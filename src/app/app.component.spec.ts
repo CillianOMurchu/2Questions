@@ -20,10 +20,12 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('devTest');
   });
 
-  it('should render title', () => {
+  it('should fetch json from url', () => {
     const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, devTest');
+    const app = fixture.componentInstance;
+    const url = "https://jsonplaceholder.typicode.com/posts/1";
+    const result = app.fetchAllUrls();
+    expect(result).toEqual('test');
+
   });
 });
