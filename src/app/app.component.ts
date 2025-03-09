@@ -1,38 +1,39 @@
 import { Component } from '@angular/core';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { DataService } from './services/data.service';
+import { TEST_URLS } from './constants';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  imports: [MatSlideToggleModule],
+  imports: [CommonModule],
 })
 export class AppComponent {
-  urls = [
-    'https://jsonplaceholder.typicode.com/todos/1',
-    'https://api.github.com/zen',
-    'https://dog.ceo/api/breeds/image/random',
-    'https://httpbin.org/delay/1',
-    'https://httpbin.org/delay/2',
-    'https://httpbin.org/status/404',
-    'https://httpbin.org/status/500',
-    'https://jsonplaceholder.typicode.com/posts/1',
-  ];
+  requestStatuses: { [url: string]: string } = {}; // Track status of each URL request
+  progress: { [url: string]: number } = {}; // Track progress (0 to 100)
+  completedRequests: number = 0;
+  urls = TEST_URLS;
 
   constructor(private dataService: DataService) {}
 
   ngOnInit() {
-    console.log('on init');
-    this.dataService.fetchWithConcurrency(this.urls, 3).subscribe({
+    this.dataService.fetchWithConcurrency(TEST_URLS, 3).subscribe({
       next: (response) => {
-        console.log('Fetched result:', response);
+        const url = response.url;
+        this.requestStatuses[url] = 'Completed'; // Mark the request as completed
+        this.progress[url] = 100; // Set progress to 100% for completed requests
+        this.completedRequests++; // Increment the completed requests counter
+        console.log(`Request for ${url} completed.`);
       },
       complete: () => {
         console.log('All requests completed!');
       },
       error: (error) => {
-        console.error('Error:', error);
+        const { url } = error;
+        this.requestStatuses[url] = 'Failed'; // Mark as failed if an error occurs
+        this.progress[url] = 0; // Set progress to 0% for failed requests
+        console.error(`Request for ${url} failed:`, error);
       },
     });
   }

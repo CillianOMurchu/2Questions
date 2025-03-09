@@ -12,28 +12,22 @@ export class DataService {
   fetchWithConcurrency(
     urls: string[],
     maxConcurrency: number
-  ): Observable<{ url: string; response: any }[]> {
-    const results: { url: string; response: any }[] = [];
-
+  ): Observable<{ url: string; response: any }> {
     return from(urls).pipe(
       mergeMap(
         (url) =>
           this.http.get(url).pipe(
             map((response) => {
               console.log(`Fetched URL: ${url}`); // Log each fetched URL
-              results.push({ url, response });
-              return { url, response };
+              return { url, response }; // Immediately return the result for each URL
             }),
             catchError((error) => {
               console.error(`Error fetching URL: ${url}`, error);
-              results.push({ url, response: error });
-              return of({ url, response: error });
+              return of({ url, response: error }); // Return the error response immediately
             })
           ),
         maxConcurrency // Limit concurrency to maxConcurrency
-      ),
-      // Return all results once all requests have been processed
-      map(() => results)
+      )
     );
   }
 }
