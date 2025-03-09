@@ -14,6 +14,8 @@ ul {
 
 :root {
   --success-color-background: #4caf50 !important;
+  // a different green for the start one
+  --start-color-background: #43a047 !important;
   --failure-color-background: #f44336 !important;
   --timeout-color-background: #ff9800 !important;
   --status-color-text: #ffffff !important;

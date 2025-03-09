@@ -43,7 +43,7 @@ type StatusType =
 })
 export class AppComponent {
   requestStatuses: RequestStatus = {}; // Track status of each URL request
-  progress: Progress = {}; // Track progress (0 to 100)
+  progress: Progress | null = null; // Track progress (0 to 100)
   completedRequests: number = 0;
   urls = TEST_URLS;
   maxConcurrency = 1;
@@ -106,7 +106,6 @@ export class AppComponent {
   }
 
   private handleResponse(response: any) {
-    console.log('response is ', response);
     const url = response.url;
     const isError = this.isRequestError(response);
     const isTimeout = response.response.name === 'TimeoutError';
@@ -141,6 +140,9 @@ export class AppComponent {
     status: StatusType,
     progressValue: number
   ) {
+    if (!this.progress) {
+      this.progress = {};
+    }
     this.requestStatuses[url] = status;
     this.progress[url] = progressValue;
   }

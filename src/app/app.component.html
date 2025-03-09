@@ -1,34 +1,40 @@
 <main class="app__main">
   <mat-card class="timer-card">
     <mat-card-header>
-      <mat-card-title>Request Timer</mat-card-title>
+      <mat-card-title>Concurrent Requests Table</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <p>Time Elapsed: {{ elapsedTime }} seconds</p>
       <div>
         <span>
-          Concurrency set:
-          <mat-slider min="1" max="10" step="1" showTickMarks discrete>
+          Concurrency value slider:
+          <mat-slider
+            min="1"
+            [max]="this.urls.length"
+            step="1"
+            showTickMarks
+            discrete
+          >
             <input matSliderThumb [(ngModel)]="maxConcurrency" #slider />
           </mat-slider>
           {{ slider.value }}
         </span>
       </div>
-      <div>
+      <div class="app__control-panel">
+        <button
+          [disabled]="this.disableEverything"
+          mat-raised-button
+          class="status__button status__button__start"
+          (click)="initiateRequests()"
+        >
+          Start Requests
+        </button>
         <button
           [disabled]="this.disableEverything"
           mat-raised-button
           (click)="stopFetching()"
         >
-          Stop
-        </button>
-        <button
-          [disabled]="this.disableEverything"
-          mat-raised-button
-          color="primary"
-          (click)="initiateRequests()"
-        >
-          Start Requests
+          Stop Requests
         </button>
         <p *ngIf="this.disableEverything">
           Allowing time for in progress requests to complete before resetting...

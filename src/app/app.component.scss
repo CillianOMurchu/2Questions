@@ -3,13 +3,21 @@
     padding: 20px;
     border: 2px solid red;
   }
+
+  &__control-panel {
+    display: flex;
+    gap: 20px;
+  }
 }
 
 .status {
   &__button {
     margin-left: 10px;
-    width: 100%;
-    color: var(--status-color);
+
+    &__start:not(.disabled) {
+      color: var(--status-color-text);
+      background-color: var(--start-color-background);
+    }
 
     &__success:not(.disabled) {
       background-color: var(--success-color-background);
