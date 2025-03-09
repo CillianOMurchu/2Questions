@@ -1,19 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { DataService } from './services/data.service';
 import { TEST_URLS } from './constants';
 import { CommonModule } from '@angular/common';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    MatProgressBarModule,
+    MatCardModule,
+    MatChipsModule,
+    MatExpansionModule,
+    MatButtonModule,
+  ],
 })
 export class AppComponent {
   requestStatuses: { [url: string]: string } = {}; // Track status of each URL request
   progress: { [url: string]: number } = {}; // Track progress (0 to 100)
   completedRequests: number = 0;
   urls = TEST_URLS;
+  readonly panelOpenState = signal(true);
 
   constructor(private dataService: DataService) {}
 

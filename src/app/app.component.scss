@@ -1,0 +1,20 @@
+.app {
+  &__main {
+    padding: 20px;
+    border: 2px solid red;
+
+    .status {
+      .fail {
+        background-color: red;
+      }
+      .success {
+        background-color: green;
+      }
+    }
+  }
+}
+
+.custom-primary-button {
+  background-color: var(--primary-color);
+  color: var(--primary-color-text);
+}

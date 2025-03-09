@@ -1,3 +1,58 @@
-<div *ngIf="completedRequests === urls.length">
+<main class="app__main">
+  <mat-accordion>
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title> Url name here </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="status">
+        <button mat-flat-button class="custom-primary-button">Primary</button>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</main>
+
+<!-- <div *ngIf="completedRequests === urls.length">
   <h3>All Requests Completed</h3>
 </div>
+
+<mat-card class="example-card" appearance="outlined">
+  <mat-card-header>
+    <mat-card-title>www.aurl.com</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>Progress bar here</p>
+  </mat-card-content>
+  <mat-card-footer class="example-card-footer">
+    <mat-chip-set aria-label="Chihuahua traits">
+      <mat-chip>complete</mat-chip>
+      <mat-chip>pending</mat-chip>
+    </mat-chip-set>
+  </mat-card-footer>
+</mat-card> -->
+
+<!-- <mat-card *ngFor="let url of urls" class="url-card">
+  <mat-card-header>
+    <mat-card-title>{{ url }}</mat-card-title>
+    <mat-card-subtitle
+      >Status: {{ requestStatuses[url] || "Pending" }}</mat-card-subtitle
+    >
+  </mat-card-header>
+
+  <mat-card-content>
+    <mat-progress-bar
+      *ngIf="progress[url] !== undefined"
+      [value]="progress[url]"
+      mode="determinate"
+    ></mat-progress-bar>
+  </mat-card-content>
+
+  <mat-card-footer>
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="progress[url] === 100"
+    >
+      Retry
+    </button>
+  </mat-card-footer>
+</mat-card> -->
