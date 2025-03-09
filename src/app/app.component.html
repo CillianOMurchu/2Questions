@@ -1,19 +1,87 @@
 <main class="app__main">
-  <mat-accordion>
-    <mat-expansion-panel hideToggle>
-      <mat-expansion-panel-header>
-        <mat-panel-title> Url name here </mat-panel-title>
-      </mat-expansion-panel-header>
-      <div class="status">
-        <button mat-flat-button class="custom-primary-button">Primary</button>
+  <mat-card class="timer-card">
+    <mat-card-header>
+      <mat-card-title>Request Timer</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>Time Elapsed: {{ elapsedTime }} seconds</p>
+      <div>
+        <span>
+          Concurrency set:
+          <mat-slider min="1" max="10" step="1" showTickMarks discrete>
+            <input matSliderThumb [(ngModel)]="maxConcurrency" #slider />
+          </mat-slider>
+          {{ slider.value }}
+        </span>
       </div>
-    </mat-expansion-panel>
+      <div>
+        <button
+          [disabled]="this.disableEverything"
+          mat-raised-button
+          (click)="stopFetching()"
+        >
+          Stop
+        </button>
+        <button
+          [disabled]="this.disableEverything"
+          mat-raised-button
+          color="primary"
+          (click)="initiateRequests()"
+        >
+          Start Requests
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <div *ngIf="completedRequests === urls.length">
+    <h3>All Requests Completed</h3>
+  </div>
+
+  <mat-accordion *ngFor="let url of urls">
+    <ul>
+      <li>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <span> {{ url }} - </span>
+              <span>
+                <div class="status">
+                  <button
+                    [disabled]="true"
+                    *ngIf="requestStatuses[url] === 'Success'"
+                    mat-flat-button
+                    class="status__button status__button__success"
+                  >
+                    Success
+                  </button>
+                  <button
+                    [disabled]="true"
+                    *ngIf="requestStatuses[url] === 'Failed'"
+                    mat-flat-button
+                    class="status__button status__button__failure"
+                  >
+                    Failure
+                  </button>
+                  <button
+                    [disabled]="true"
+                    *ngIf="requestStatuses[url] === 'TimeoutError'"
+                    mat-flat-button
+                    class="status__button status__button__timeout"
+                  >
+                    Timeout
+                  </button>
+                </div>
+              </span></mat-panel-title
+            >
+          </mat-expansion-panel-header>
+          panel content
+        </mat-expansion-panel>
+      </li>
+    </ul>
   </mat-accordion>
 </main>
 
-<!-- <div *ngIf="completedRequests === urls.length">
-  <h3>All Requests Completed</h3>
-</div>
+<!-- 
 
 <mat-card class="example-card" appearance="outlined">
   <mat-card-header>

@@ -2,19 +2,24 @@
   &__main {
     padding: 20px;
     border: 2px solid red;
-
-    .status {
-      .fail {
-        background-color: red;
-      }
-      .success {
-        background-color: green;
-      }
-    }
   }
 }
 
-.custom-primary-button {
-  background-color: var(--primary-color);
-  color: var(--primary-color-text);
+.status {
+  &__button {
+    margin-left: 10px;
+    width: 100%;
+    color: var(--status-color);
+
+    &__success:not(.disabled) {
+      background-color: var(--success-color-background);
+    }
+
+    &__failure:not(.disabled) {
+      background-color: var(--failure-color-background);
+    }
+    &__timeout:not(.disabled) {
+      background-color: var(--timeout-color-background);
+    }
+  }
 }
