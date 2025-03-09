@@ -30,6 +30,9 @@
         >
           Start Requests
         </button>
+        <p *ngIf="this.disableEverything">
+          Allowing time for in progress requests to complete before resetting...
+        </p>
       </div>
     </mat-card-content>
   </mat-card>
