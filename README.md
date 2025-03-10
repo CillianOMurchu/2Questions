@@ -1,13 +1,14 @@
-🚗 DevTest: Angular Interview Questions
+DevTest: Angular Interview Questions
 This project demonstrates two key functionalities using Angular, RxJS, and Angular Material:
 
-License Plate Generator – A tool to generate sequential license plates based on a unique numbering system.
-Concurrent URL Fetcher – A function to fetch multiple URLs efficiently with controlled concurrency.
-Both features are visually displayed using Angular Material for an interactive user experience.
+**License Plate Generator** – A tool to generate sequential license plates based on a unique numbering system.
+**Concurrent URL Fetcher** – A function to fetch multiple URLs efficiently with controlled concurrency.
+Both features are visually displayed using **Angular Material** for an interactive user experience.
 
 📸 Preview
+![Screenshot from 2025-03-10 04-48-13](https://github.com/user-attachments/assets/21df34bd-8393-4f21-8ee1-4fd5511134ea)
 
-(Replace with an actual screenshot of your Angular app!)
+
 
 🚀 Getting Started
 1️⃣ Installation
