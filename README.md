@@ -6,25 +6,14 @@ This project demonstrates two key functionalities using Angular, RxJS, and Angul
 Both features are visually displayed using **Angular Material** for an interactive user experience.
 
 📸 Preview
-![Screenshot from 2025-03-10 04-48-13](https://github.com/user-attachments/assets/21df34bd-8393-4f21-8ee1-4fd5511134ea)
-
-
+![Screenshot from 2025-03-10 05-58-18](https://github.com/user-attachments/assets/4ba25a16-e312-47c2-a4e3-4daaea14ce9e)
 
 🚀 Getting Started
 1️⃣ Installation
-Clone this repository and install dependencies:
-
-bash
-Copy
-Edit
 git clone https://github.com/your-repo/devtest.git
 cd devtest
 npm install
 2️⃣ Run the Application
-Start the local development server:
-
-bash
-Copy
-Edit
 ng serve
+
 Now, open your browser and visit http://localhost:4200/.
